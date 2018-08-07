@@ -1,0 +1,33 @@
+<html en='utf8'>
+  
+  <style>
+  div {
+      font-size: 12px;
+      border-radius: 10px;
+      border: solid 1px #336699;
+      padding: 15px 15px 15px 15px;
+      line-height: 20px;
+      width: 400px;
+  }
+  </style>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js'></script>
+  <script src='http://code.jquery.com/jquery-1.8.2.min.js'></script>
+  <script>
+  $(document).ready(function() {
+      
+    var socket = io.connect('http://192.168.43.122:3000/');
+
+        
+    socket.on("disconnect", function(){
+        console.log("client disconnected from server");
+    });    
+
+    $('#send').click(function() {
+        socket.emit('mouse_emit', 'Mouse Click');
+    });
+  });
+  </script>
+  
+  
+  <button id='send'>send</button>
+  <div id='panel'></div>
